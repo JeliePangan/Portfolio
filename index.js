@@ -89,6 +89,31 @@ document.addEventListener('DOMContentLoaded', () => {
         menuBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
     });
 
+
+    // HERO NAVBAR MOBILE MENU
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+
+    // STICKY NAVBAR MOBILE MENU
+    const stickyMenuBtn = document.getElementById("sticky-menu-btn");
+    const stickyMobileMenu = document.getElementById("sticky-mobile-menu");
+    stickyMenuBtn.addEventListener("click", () => {
+        stickyMobileMenu.classList.toggle("hidden");
+    });
+
+    // SHOW/HIDE STICKY NAVBAR ON SCROLL
+    const stickyNav = document.getElementById("sticky-nav");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > window.innerHeight * 0.8) {
+            stickyNav.classList.remove("opacity-0", "-translate-y-10");
+            stickyNav.classList.add("opacity-100", "translate-y-0");
+        } else {
+            stickyNav.classList.add("opacity-0", "-translate-y-10");
+            stickyNav.classList.remove("opacity-100", "translate-y-0");
+        }
+    });
+
     // Auto-close menu on window resize (desktop)
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) {
