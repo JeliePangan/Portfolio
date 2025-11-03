@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        momo: ['"Momo Signature"', 'cursive'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Smooth Scroll -->
+    <style>
+        * {
+            font-family: "Lobster Two", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .parallax {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            background-image: url('./images/Landscape1.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: translateY(0);
+            will-change: transform;
+            transition: transform 0.05s linear;
+        }
+    </style>
+
+    <title>Portfolio</title>
+</head>
+
+<body class="bg-[#222]">
+    <!-- Parallax Hero Section -->
+    <div class="parallax relative h-screen overflow-hidden">
+        <div class="parallax-bg absolute top-0 left-0 w-full h-[120%] bg-cover bg-center z-[-1]"></div>
+
+        <!--NAVBAR-->
+        <nav class="relative container mx-auto p-6 top-0 left-0 w-full z-20">
+            <div class="flex justify-between items-center">
+
+                <div class="text-white text-3xl font-bold" data-aos="fade-down" data-aos-duration="1000">
+                    Jelie<span class="text-yellow-400">P</span>
+                </div>
+
+                <div class="hidden md:flex space-x-20 text-gray-950">
+                    <a href="#" class="text-2xl hover:text-gray-800 transition-all duration-200" data-aos="fade-down"
+                        data-aos-duration="1000">Home</a>
+                    <a href="#project-cards" class="text-2xl hover:text-gray-800 transition-all duration-200"
+                        data-aos="fade-down" data-aos-duration="1500">Projects</a>
+                    <a href="#AboutMe" class="text-2xl hover:text-gray-800 transition-all duration-200"
+                        data-aos="fade-down" data-aos-duration="2000">About Me</a>
+                    <a href="#Contact" class="text-2xl hover:text-gray-800 transition-all duration-200"
+                        data-aos="fade-down" data-aos-duration="2500">Contact</a>
+                </div>
+
+                <button id="menu-btn"
+                    class="block md:hidden focus:outline-none text-white text-4xl transition-transform duration-300"
+                    aria-label="Toggle Menu">
+                    ☰
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu"
+                class="hidden flex flex-col absolute top-full left-0 w-full bg-black bg-opacity-80 text-center py-6 space-y-6 text-white text-2xl backdrop-blur-md transition-all duration-300">
+                <a href="#" class="hover:text-yellow-400 transition-all duration-200">Home</a>
+                <a href="#project-cards" class="hover:text-yellow-400 transition-all duration-200">Projects</a>
+                <a href="#AboutMe" class="hover:text-yellow-400 transition-all duration-200">About Me</a>
+                <a href="#Contact" class="hover:text-yellow-400 transition-all duration-200">Contact</a>
+            </div>
+        </nav>
+
+
+        <!-- HERO CONTENT -->
+        <section id="about" class="h-full flex items-center justify-center">
+            <div class="container flex items-center justify-center mx-auto">
+                <div class="space-y-12 md:w-1/2 text-center">
+                    <h2 class="text-8xl text-gray-900" data-aos="fade-right" data-aos-duration="2000">Hello, I'm</h2>
+                    <strong class="font-bold text-white text-8xl" data-aos="fade-down" data-aos-duration="2500">Jelie
+                        Pangan</strong>
+                    <p class="text-2xl text-gray-900" data-aos="fade-left" data-aos-duration="2000">AND THIS IS MY
+                        PORTFOLIO</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- STICKY NAVBAR (appears after hero) -->
+    <nav id="sticky-nav"
+        class="fixed top-0 left-0 w-full bg-black bg-opacity-70 backdrop-blur-md z-50 shadow-lg transition-all duration-500 opacity-0 -translate-y-10">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="text-white text-3xl font-bold">
+                Jelie<span class="text-yellow-400">P</span>
+            </div>
+            <div class="hidden md:flex space-x-12 text-white">
+                <a href="#" class="text-xl hover:text-yellow-400 transition-all duration-200">Home</a>
+                <a href="#project-cards" class="text-xl hover:text-yellow-400 transition-all duration-200">Projects</a>
+                <a href="#AboutMe" class="text-xl hover:text-yellow-400 transition-all duration-200">About Me</a>
+                <a href="#Contact" class="text-xl hover:text-yellow-400 transition-all duration-200">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Project Cards Section -->
+    <section id="project-cards" class="py-16 bg-[#222] min-h-screen">
+        <div class="container mx-auto p-6 text-white">
+            <h3 class="text-4xl text-center mb-8">Featured <span class="font-bold text-yellow-500">Projects</span></h3>
+
+            <!-- Filter Buttons -->
+            <div class="flex justify-center flex-wrap gap-4 mb-12 mt-14">
+                <button class="filter-btn px-4 py-2 bg-gray-700 rounded hover:bg-gray-600"
+                    data-filter="all">All</button>
+                <button class="filter-btn px-4 py-2 bg-gray-700 rounded hover:bg-gray-600"
+                    data-filter="food">Food</button>
+                <button class="filter-btn px-4 py-2 bg-gray-700 rounded hover:bg-gray-600"
+                    data-filter="landscape">Landscape</button>
+                <button class="filter-btn px-4 py-2 bg-gray-700 rounded hover:bg-gray-600"
+                    data-filter="macro">Macro</button>
+                <button class="filter-btn px-4 py-2 bg-gray-700 rounded hover:bg-gray-600"
+                    data-filter="portrait">Portrait</button>
+                <button class="filter-btn px-4 py-2 bg-gray-700 rounded hover:bg-gray-600"
+                    data-filter="product">Product</button>
+            </div>
+
+            <!-- Grid: Responsive -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <!-- Food Images -->
+                <div class="relative group" data-category="food">
+                    <img src="./images/Food1.webp" alt="Food 1" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Food 1</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="food">
+                    <img src="./images/Food2.webp" alt="Food 2" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Food 2</h5>
+                    </div>
+                </div>
+
+                <!-- Landscape Images -->
+                <div class="relative group" data-category="landscape">
+                    <img src="./images/Landscape1.webp" alt="Landscape 1" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Landscape 1</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="landscape">
+                    <img src="./images/Landscape2.webp" alt="Landscape 2" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Landscape 2</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="landscape">
+                    <img src="./images/Landscape3.webp" alt="Landscape 3" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Landscape 3</h5>
+                    </div>
+                </div>
+
+                <!-- Macro Images -->
+                <div class="relative group" data-category="macro">
+                    <img src="./images/Macro1.webp" alt="Macro 1" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Macro 1</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="macro">
+                    <img src="./images/Macro2.webp" alt="Macro 2" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Macro 2</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="macro">
+                    <img src="./images/Macro3.webp" alt="Macro 3" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Macro 3</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="macro">
+                    <img src="./images/Macro4.webp" alt="Macro 4" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Macro 4</h5>
+                    </div>
+                </div>
+
+                <!-- Product Images -->
+                <div class="relative group" data-category="product">
+                    <img src="./images/Product1.webp" alt="Product 1" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Product 1</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="product">
+                    <img src="./images/Product2.webp" alt="Product 2" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Product 2</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="product">
+                    <img src="./images/Product3.webp" alt="Product 3" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Product 3</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="product">
+                    <img src="./images/Product4.webp" alt="Product 4" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Product 4</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="product">
+                    <img src="./images/Product5.webp" alt="Product 5" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Product 5</h5>
+                    </div>
+                </div>
+
+                <!-- Portrait Images -->
+                <div class="relative group" data-category="portrait">
+                    <img src="./images/Portrait1.webp" alt="Portrait 1" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Portrait 1</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="portrait">
+                    <img src="./images/Portrait2.webp" alt="Portrait 2" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Portrait 2</h5>
+                    </div>
+                </div>
+
+                <div class="relative group" data-category="portrait">
+                    <img src="./images/Portrait3.webp" alt="Portrait 3" loading="lazy" decoding="async"
+                        class="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105 will-change-transform">
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
+                        <h5 class="text-white text-lg font-roboto">Portrait 3</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden flex items-center justify-center z-50">
+        <div class="relative max-w-4xl w-full mx-4">
+            <button id="modal-close" class="absolute top-2 right-2 text-white text-3xl font-bold">&times;</button>
+            <img id="modal-img" src="" alt="" class="w-full h-auto rounded-lg shadow-lg">
+            <p id="modal-caption" class="text-white text-center mt-4 font-roboto text-lg"></p>
+        </div>
+    </div>
+
+    <section id="Resume" class="min-h-[70vh] bg-[#1a1a1a] py-24">
+        <div class="container mx-auto px-6">
+            <!-- Section Title -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl text-white font-bold">
+                    My <span class="text-yellow-500">Resume</span>
+                </h2>
+            </div>
+
+            <!-- Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+
+                <!-- Education Column -->
+                <div data-aos="fade-right" class="space-y-8">
+                    <h2 class="text-2xl font-semibold text-white mb-6">Education</h2>
+
+                    <!-- Education Item -->
+                    <div class="p-6 bg-[#2b2b2b] rounded-lg shadow-md hover:shadow-2xl transition-all duration-300">
+                        <span class="text-gray-400 text-sm flex items-center gap-2 mb-2">
+                            🎓 2023 - 2025
+                        </span>
+                        <h3 class="text-xl text-yellow-400 font-semibold mb-1">Bachelor of Multimedia Arts</h3>
+                        <p class="text-gray-300">STI College of San Fernando</p>
+                        <p class="text-gray-400 mt-2 text-sm">Focused on multimedia design, animation, and digital art.
+                        </p>
+                    </div>
+
+                    <div class="p-6 bg-[#2b2b2b] rounded-lg shadow-md hover:shadow-2xl transition-all duration-300">
+                        <span class="text-gray-400 text-sm flex items-center gap-2 mb-2">
+                            🎓 2021 - 2023
+                        </span>
+                        <h3 class="text-xl text-yellow-400 font-semibold mb-1">ICT Strand</h3>
+                        <p class="text-gray-300">Mary the Queen College</p>
+                        <p class="text-gray-400 mt-2 text-sm">Specialized in programming and web development
+                            fundamentals.</p>
+                    </div>
+
+                    <div class="p-6 bg-[#2b2b2b] rounded-lg shadow-md hover:shadow-2xl transition-all duration-300">
+                        <span class="text-gray-400 text-sm flex items-center gap-2 mb-2">
+                            🎓 2017 - 2019
+                        </span>
+                        <h3 class="text-xl text-yellow-400 font-semibold mb-1">High School</h3>
+                        <p class="text-gray-300">Immaculate Conception Academy</p>
+                    </div>
+
+                    <div class="p-6 bg-[#2b2b2b] rounded-lg shadow-md hover:shadow-2xl transition-all duration-300">
+                        <span class="text-gray-400 text-sm flex items-center gap-2 mb-2">
+                            🎓 2011 - 2016
+                        </span>
+                        <h3 class="text-xl text-yellow-400 font-semibold mb-1">Elementary</h3>
+                        <p class="text-gray-300">Guagua Elementary School</p>
+                    </div>
+                </div>
+
+                <!-- Skills Column -->
+                <div data-aos="fade-left" class="space-y-10">
+                    <h2 class="text-2xl font-semibold text-white mb-6">Skills</h2>
+
+                    <!-- Technical Skills -->
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-white mb-2">
+                                <span>Photography & Visual Composition</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-white mb-2">
+                                <span>Digital Illustration and Concept Art</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-white mb-2">
+                                <span>Graphic Design & Layout</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-white mb-2">
+                                <span>Video Editing</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-rose-500 h-2 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="pt-8 border-t border-gray-700">
+                        <h3 class="text-xl text-yellow-400 font-semibold mb-4">Soft Skills</h3>
+                        <ul class="grid grid-cols-2 gap-3 text-gray-300">
+                            <li>🎨 Creativity</li>
+                            <li>💬 Communication</li>
+                            <li>🧠 Problem Solving</li>
+                            <li>🤝 Teamwork</li>
+                            <li>⚡ Adaptability</li>
+                            <li>📅 Time Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="AboutMe" class="py-20 text-white">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <!-- Image -->
+            <div id="image-left" class="flex-1" data-aos="flip-right" data-aos-duration="2000">
+                <img src="./images/profile.webp" alt="About Me" class="rounded-lg shadow-2xl w-full object-cover">
+            </div>
+
+            <!-- Content -->
+            <div id="content-left" class="flex-1 space-y-6" data-aos="fade-left" data-aos-duration="2500">
+                <!-- Header -->
+                <div id="About-Header">
+                    <h3 class="text-4xl font-bold">
+                        About <span class="text-yellow-500">Me</span>
+                    </h3>
+                </div>
+
+                <!-- Paragraphs -->
+                <div id="paragraph">
+                    <p class="text-gray-300 text-lg">
+                        I’m a multimedia arts student with a passion for art, photography, and digital illustration. I
+                        love creating visually engaging pieces that tell a story, express emotion, and capture unique
+                        ideas. My work often blends creativity and technical skill, exploring different styles and
+                        mediums from digital drawing to photo-based projects.
+                    </p>
+                </div>
+                <div id="small-paragraph">
+                    <p class="text-gray-400">
+                        I enjoy experimenting, learning new techniques, and working on personal projects that help me
+                        grow as an artist. My goal is to create meaningful, visually striking work that connects with
+                        people and reflects my artistic journey.
+                    </p>
+                </div>
+
+                <!-- Buttons -->
+                <div class="buttons flex gap-4">
+                    <button
+                        class="bg-yellow-500 text-gray-900 font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition-all duration-300">
+                        Hire Me
+                    </button>
+                    <button
+                        class="bg-gray-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-gray-600 transition-all duration-300">
+                        Download CV
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Contact" class="py-16 bg-[#223]">
+        <div class="max-w-6xl mx-auto p-4 md:p-16 xl:p-20">
+            <div class="lg:w-2/3 space-y-5 text-center mx-auto">
+                <h1 class="text-gray-800 uppercase tracking-widest dark:text-white font-medium text-4xl">
+                    Contact Me
+                </h1>
+                <div class="h-0.5 bg-yellow-500 w-60 mx-auto"></div>
+                <p class="text-gray-400 dark:text-gray-300 text-base leading-6">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda ut facilis repudiandae
+                    blanditiis ad tempore asperiores neque provident. Possimus, veritatis.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-16">
+                <div>
+                    <address>
+                        <div class="mb-6">
+                            <h2 class="text-base font-medium mb-2 dark:text-white">
+                                My Address:
+                            </h2>
+                            <p class="text-gray-400 dark:text-gray-300 text-sm font-medium leading-5">
+                                Sta. Filomena Guagua Pampanga
+                            </p>
+                        </div>
+                        <div class="mb-6">
+                            <h2 class="text-base font-medium mb-2 dark:text-white">
+                                My Email Address
+                            </h2>
+                            <p class="text-gray-400 dark:text-gray-300 text-sm font-medium leading-5">
+                                panganjelie7@gmail.com
+                            </p>
+                        </div>
+                        <div class="mb-6">
+                            <h2 class="text-base font-medium mb-2 dark:text-white">
+                                My Phone Number
+                            </h2>
+                            <p class="text-gray-400 dark:text-gray-300 text-sm font-medium leading-5">
+                                +63 998 392 3266
+                            </p>
+                        </div>
+                    </address>
+                </div>
+                <div class="lg:col-span-2">
+                    <div id="confirmationMessage" class="hidden text-green-500 font-semibold mb-6"></div>
+
+                    <form id="contactForm">
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <label for="name" class="sr-only">Name</label>
+                                <input type="text" name="name" id="name" placeholder="Enter your Name"
+                                    class="border-gray-300 text-white text-sm rounded focus:ring-0 focus:border-gray-400 block w-full p-3 dark:bg-zinc-700/20 dark:border-zinc-700/50"
+                                    required>
+                                <label for="phone" class="sr-only">Phone Number</label>
+                                <input type="text" name="phone" id="phone" placeholder="Enter your Phone Number"
+                                    class="border-gray-300 text-white text-sm rounded focus:ring-0 focus:border-gray-400 block w-full p-3 dark:bg-zinc-700/20 dark:border-zinc-700/50"
+                                    required>
+                            </div>
+                            <label for="email" class="sr-only">Email Address</label>
+                            <input type="email" name="email" id="email" placeholder="Enter your Email Address" required
+                                class="border-gray-300 text-white text-sm rounded focus:ring-0 focus:border-gray-400 block w-full p-3 dark:bg-zinc-700/20 dark:border-zinc-700/50">
+
+                            <label for="comments" class="sr-only">Messages</label>
+                            <textarea name="comments" id="comments" required
+                                class="border-gray-300 text-white text-sm rounded focus:ring-0 focus:border-gray-400 block w-full p-3 dark:bg-zinc-700/20 dark:border-zinc-700/50"
+                                placeholder="Enter your Message" rows="3"></textarea>
+                            <div class="text-right">
+                                <button type="submit"
+                                    class="bg-yellow-500 text-gray-900 font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition-all duration-300">
+                                    Send Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="bg-[#223]">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <div class="md:flex md:justify-between">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="flex items-center">
+                        <span
+                            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><span class="text-yellow-400">P</span>ortfolio</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="#" class="hover:underline">Javascript</a>
+                            </li>
+                            <li>
+                                <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="#" class="hover:underline ">Github</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline">Discord</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                            <li class="mb-4">
+                                <a href="#" class="hover:underline">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="#"
+                        class="hover:underline">Portfolio</a>. All Rights Reserved.
+                </span>
+                <div class="flex mt-4 sm:justify-center sm:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="#" fill="currentColor" viewBox="0 0 8 19">
+                            <path fill-rule="evenodd"
+                                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">Facebook page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="#" fill="currentColor" viewBox="0 0 21 16">
+                            <path
+                                d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
+                        </svg>
+                        <span class="sr-only">Discord community</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="#" fill="currentColor" viewBox="0 0 20 17">
+                            <path fill-rule="evenodd"
+                                d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">Twitter page</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="#" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="sr-only">GitHub account</span>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="index.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            mirror: false,
+            easing: 'ease-out',
+            throttleDelay: 200,
+            debounceDelay: 200,
+            disable: function () {
+                // disable on mobile and tablets
+                return window.innerWidth < 768;
+            }
+        });
+    </script>
+</body>
+
+</html>
