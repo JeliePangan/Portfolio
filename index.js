@@ -106,11 +106,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // STICKY NAVBAR MOBILE MENU
     const stickyMenuBtn = document.getElementById("sticky-menu-btn");
     const stickyMobileMenu = document.getElementById("sticky-mobile-menu");
+
     if (stickyMenuBtn && stickyMobileMenu) {
         stickyMenuBtn.addEventListener("click", () => {
             stickyMobileMenu.classList.toggle("hidden");
+            stickyMenuBtn.textContent = stickyMobileMenu.classList.contains("hidden") ? "☰" : "✕";
+        });
+
+        // Close menu when any link is clicked
+        document.querySelectorAll('#sticky-mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Delay close slightly to allow smooth scrolling
+                setTimeout(() => {
+                    stickyMobileMenu.classList.add('hidden');
+                    stickyMenuBtn.textContent = '☰';
+                }, 300);
+            });
         });
     }
+
 
     // Initialize AOS
     AOS.init({
