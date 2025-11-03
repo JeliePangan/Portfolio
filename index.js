@@ -33,7 +33,6 @@ filterButtons.forEach(button => {
             }
         });
 
-        // Refresh AOS animations after filtering
         AOS.refresh();
     });
 });
@@ -77,60 +76,50 @@ if (form) {
 }
 
 // =========================
-// Hamburger Menu
+// Navigation Logic
 // =========================
 document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    // Toggle mobile menu
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
-    });
-
-
     // HERO NAVBAR MOBILE MENU
-    menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-    });
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+        });
+
+        // Auto-close menu on resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+                menuBtn.textContent = '☰';
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuBtn.textContent = '☰';
+            });
+        });
+    }
 
     // STICKY NAVBAR MOBILE MENU
     const stickyMenuBtn = document.getElementById("sticky-menu-btn");
     const stickyMobileMenu = document.getElementById("sticky-mobile-menu");
-    stickyMenuBtn.addEventListener("click", () => {
-        stickyMobileMenu.classList.toggle("hidden");
-    });
-
-    // SHOW/HIDE STICKY NAVBAR ON SCROLL
-    const stickyNav = document.getElementById("sticky-nav");
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > window.innerHeight * 0.8) {
-            stickyNav.classList.remove("opacity-0", "-translate-y-10");
-            stickyNav.classList.add("opacity-100", "translate-y-0");
-        } else {
-            stickyNav.classList.add("opacity-0", "-translate-y-10");
-            stickyNav.classList.remove("opacity-100", "translate-y-0");
-        }
-    });
-
-    // Auto-close menu on window resize (desktop)
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) {
-            mobileMenu.classList.add('hidden');
-            menuBtn.textContent = '☰';
-        }
-    });
-
-    // Auto-close menu when clicking a link (mobile only)
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            menuBtn.textContent = '☰';
+    if (stickyMenuBtn && stickyMobileMenu) {
+        stickyMenuBtn.addEventListener("click", () => {
+            stickyMobileMenu.classList.toggle("hidden");
         });
+    }
+
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+        mirror: false,
+        disable: 'mobile'
     });
 });
-
 
 // =========================
 // Scroll: Parallax & Sticky Navbar
@@ -155,16 +144,4 @@ window.addEventListener('scroll', () => {
             stickyNav.classList.remove('opacity-100', 'translate-y-0');
         }
     }
-});
-
-// =========================
-// Initialize AOS
-// =========================
-document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({
-        duration: 1000,
-        once: true,
-        mirror: false,
-        disable: 'mobile'
-    });
 });
