@@ -35,7 +35,9 @@
     <style>
         * {
             font-family: "Lobster Two", sans-serif;
+
         }
+
 
         html {
             scroll-behavior: smooth;
@@ -45,16 +47,23 @@
             position: relative;
             height: 100vh;
             overflow: hidden;
+            perspective: 1px;
+            transform-style: preserve-3d;
         }
 
         .parallax-bg {
+            background-attachment: fixed;
             background-image: url('./images/Landscape1.webp');
-            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transform: translateY(0);
-            will-change: transform;
-            transition: transform 0.05s linear;
+            background-size: cover;
+            transform: translateZ(-1px) scale(2);
+            /* creates the depth illusion */
+        }
+
+        .parallax section {
+            position: relative;
+            z-index: 1;
         }
     </style>
 
@@ -79,6 +88,8 @@
                         data-aos-duration="1000">Home</a>
                     <a href="#project-cards" class="text-2xl hover:text-gray-800 transition-all duration-200"
                         data-aos="fade-down" data-aos-duration="1500">Projects</a>
+                    <a href="#Resume" class="text-2xl hover:text-gray-800 transition-all duration-200"
+                        data-aos="fade-down" data-aos-duration="2000">Resume</a>
                     <a href="#AboutMe" class="text-2xl hover:text-gray-800 transition-all duration-200"
                         data-aos="fade-down" data-aos-duration="2000">About Me</a>
                     <a href="#Contact" class="text-2xl hover:text-gray-800 transition-all duration-200"
@@ -127,6 +138,7 @@
             <div class="hidden md:flex space-x-12 text-white">
                 <a href="#" class="text-xl hover:text-yellow-400 transition-all duration-200">Home</a>
                 <a href="#project-cards" class="text-xl hover:text-yellow-400 transition-all duration-200">Projects</a>
+                <a href="#Resume" class="text-xl hover:text-yellow-400 transition-all duration-200">Resume</a>
                 <a href="#AboutMe" class="text-xl hover:text-yellow-400 transition-all duration-200">About Me</a>
                 <a href="#Contact" class="text-xl hover:text-yellow-400 transition-all duration-200">Contact</a>
             </div>
@@ -579,8 +591,8 @@
             <div class="md:flex md:justify-between">
                 <div class="mb-6 md:mb-0">
                     <a href="#" class="flex items-center">
-                        <span
-                            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><span class="text-yellow-400">P</span>ortfolio</span>
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><span
+                                class="text-yellow-400">P</span>ortfolio</span>
                     </a>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
